@@ -22,6 +22,10 @@ uniform mat4 projection;
 #define COW 0
 #define PLANE 1
 #define CUBE 2
+#define APPLE 3
+#define GRASSFOOD 4
+#define CALF 5
+#define BIRD 6
 uniform int object_id;
 
 // Parâmetros da axis-aligned bounding box (AABB) do modelo
@@ -32,6 +36,10 @@ uniform vec4 bbox_max;
 uniform sampler2D TextureImage0;
 uniform sampler2D TextureImage1;
 uniform sampler2D TextureImage2;
+uniform sampler2D TextureImage3;
+uniform sampler2D TextureImage4;
+uniform sampler2D TextureImage5;
+uniform sampler2D TextureImage6;
 
 // O valor de saída ("out") de um Fragment Shader é a cor final do fragmento.
 out vec4 color;
@@ -68,6 +76,34 @@ void main()
     float U = 0.0;
     float V = 0.0;
 
+    vec3 Kd; // Refletância difusa
+    vec3 Ks; // Refletância especular
+    vec3 Ka; // Refletância ambiente
+    float q = 5; // Expoente especular para o modelo de iluminação de Phong20;
+    vec4 r = -l + (2 * n * dot(n, l));
+    float angulo_incidencia = dot(r, v);
+
+    // Obtemos a refletância difusa a partir da leitura da imagem TextureImage0
+
+
+    // Equação de Iluminação
+    float lambert = max(0,dot(n,l));
+
+    // Espectro da fonte de iluminação
+    vec3 I = vec3(1.0, 1.0, 1.0); // PREENCH AQUI o espectro da fonte de luz
+
+    // Espectro da luz ambiente
+    vec3 Ia = vec3(0.2, 0.2, 0.2); // PREENCHA AQUI o espectro da luz ambiente
+
+    // Termo difuso utilizando a lei dos cossenos de Lambert
+    vec3 lambert_diffuse_term = Kd * I * max(0, dot(n, l));  // PREENCHA AQUI o termo difuso de Lambert
+
+    // Termo ambiente
+    vec3 ambient_term = Ka * Ia; // PREENCHA AQUI o termo ambiente
+
+    // Termo especular utilizando o modelo de iluminação de Phong
+    vec3 phong_specular_term  = Ks * I * pow(max(0, dot(r, v)), q); // PREENCH AQUI o termo especular de Phong
+
     if ( object_id == CUBE )
     {
         // PREENCHA AQUI as coordenadas de textura da esfera, computadas com
@@ -99,9 +135,7 @@ void main()
         V = (phi+ M_PI_2)/M_PI;
 
         vec3 Kd0 = texture(TextureImage2, vec2(U,V)).rgb;
-      //  float lambert = max(0,dot(n,l));
-        color.rgb = Kd0; //* (1-(pow(lambert,0.2)) + 0.01);
-
+        color.rgb = Kd0;
 
     }
     else if ( object_id == COW )
@@ -115,35 +149,53 @@ void main()
         // 'h' no slides 158-160 do documento Aula_20_Mapeamento_de_Texturas.pdf.
         // Veja também a Questão 4 do Questionário 4 no Moodle.
 
-       /** float minx = bbox_min.x;
-        float maxx = bbox_max.x;
-
-        float miny = bbox_min.y;
-        float maxy = bbox_max.y;
-
-        float minz = bbox_min.z;
-        float maxz = bbox_max.z;
-
-        U = (position_model.x - minx)/(maxx-minx);
-        V = (position_model.y - miny)/(maxy-miny);
-
-        vec3 Kd1 = texture(TextureImage1, vec2(U,V)).rgb;
-        float lambert = max(0,dot(n,l));
-        color.rgb = Kd1 * (lambert + 0.01);
-        **/
+        U = texcoords.x;
+        V = texcoords.y;
+        color.rgb = texture(TextureImage0, vec2(U,V)).rgb * (lambert + 0.1);
+    }
+    else if ( object_id == APPLE )
+    {
 
         U = texcoords.x;
         V = texcoords.y;
         float lambert = max(0,dot(n,l));
-        color.rgb = texture(TextureImage0, vec2(U,V)).rgb * (lambert + 0.1);
+        color.rgb = texture(TextureImage3, vec2(U,V)).rgb * (lambert + 0.1) + phong_specular_term;
     }
+
+    else if ( object_id == GRASSFOOD )
+    {
+
+        U = texcoords.x;
+        V = texcoords.y;
+        float lambert = max(0,dot(n,l));
+        color.rgb = texture(TextureImage4, vec2(U,V)).rgb * (lambert + 0.1);
+    }
+
+    else if ( object_id == BIRD )
+    {
+
+        U = texcoords.x;
+        V = texcoords.y;
+        float lambert = max(0,dot(n,l));
+        color.rgb = texture(TextureImage6, vec2(U,V)).rgb * (lambert + 0.1);
+    }
+
+    else if ( object_id == CALF )
+    {
+
+        U = texcoords.x;
+        V = texcoords.y;
+        float lambert = max(0,dot(n,l));
+        color.rgb = texture(TextureImage5, vec2(U,V)).rgb * (lambert + 0.1);
+    }
+
     else if ( object_id == PLANE )
     {
         // Coordenadas de textura do plano, obtidas do arquivo OBJ.
         U = texcoords.x;
         V = texcoords.y;
         float lambert = max(0,dot(n,l));
-        color.rgb = texture(TextureImage1, vec2(U,V)).rgb * (lambert + 0.1);
+        color.rgb = texture(TextureImage1, vec2(U,V)).rgb;
 
     }
 
