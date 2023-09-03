@@ -63,6 +63,6 @@ LEFT/ESQUERDA: Vaquinha vai para a esquerda.
 MOUSE LEFT BOTTOM: Movimentação da câmera livre.
 
 ## Compilação e Execução:
-Windows Para compilar e executar este projeto no Windows, utilize a IDE Code::Blocks, os "Build targets" padrões (Debug e Release) estão confogirados para Code::Blocks versão 20.03 ou superior, que utiliza MinGW 64-bits. Se você estiver utilizando versões mais antigas do Code::Blocks (17.12 ou anteriores) você precisa alterar o "Build target" para "Debug (CBlocks 17.12 32-bit)" ou "Release (CBlocks 17.12 32-bit)" antes de compilar o projeto.
+Windows: Para compilar e executar este projeto no Windows, utilize a IDE Code::Blocks, os "Build targets" padrões (Debug e Release) estão confogirados para Code::Blocks versão 20.03 ou superior, que utiliza MinGW 64-bits. Se você estiver utilizando versões mais antigas do Code::Blocks (17.12 ou anteriores) você precisa alterar o "Build target" para "Debug (CBlocks 17.12 32-bit)" ou "Release (CBlocks 17.12 32-bit)" antes de compilar o projeto.
 
 
