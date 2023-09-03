@@ -10,7 +10,7 @@ Nome/Aluna: Milena Lopes Maciel
 Caubejota é uma vaquinha que precisa alimentar seu bezerrinho, Bézier, de forma adequada. Num cenário com diferentes opções de alimentação, ela deve fazer a melhor escolha para gerar o melhor alimento. Caubejota porém, durante sua jornada, deve atentar-se aos obstáculos (outros personagens) para que não perca suas vidas. Estando em um plano que flutua no céu, Caubejota também tem que cuidar para não sair fora nos limites do plano e cair. 
 
 ## Contribuições: 
-Trabalho foi feito de forma individual.
+O trabalho foi feito de forma individual.
 
 ## Uso do ChatGPT: 
 Utilizado apenas para sanar dúvidas referente a sintaxe de código em C++, ou alguma compreensão de lógica de alguma parte do código fornecido no laboratório 5 pelo professor.
@@ -22,8 +22,8 @@ Utilizado apenas para sanar dúvidas referente a sintaxe de código em C++, ou a
 Foram aplicadas transformações geométricas no controle de movimento da vaquinha pelo plano. 
 
 ## Câmera livre e câmera look-at:
-Camêra livre foi usada para visualização dos limites do plano.
-Camêra look-at foi usada para visualização da orientação da vaquinha.
+A câmara livre foi usada para visualização dos limites do plano.
+A câmera look-at foi usada para visualização da orientação da vaquinha.
 ![Câmera livre e câmera look-at](Imagens/Cameras.jpg)
 
 ## Testes de intersecção entre objetos virtuais:
@@ -56,11 +56,11 @@ UP/CIMA: Vaquinha vai para frente.
 
 DOWN/BAIXO: Vaquinha vai para trás.
 
-RIGHT/DIREITA:Vaquinha vai para direita.
+RIGHT/DIREITA:Vaquinha vai para a direita.
 
-LEFT/ESQUERDA: Vaquinha vai para esquerda.
+LEFT/ESQUERDA: Vaquinha vai para a esquerda.
 
-MOUSE LEFT BOTTOM: Movimentação da camera livre.
+MOUSE LEFT BOTTOM: Movimentação da câmera livre.
 
 ## Compilação e Execução:
 Windows Para compilar e executar este projeto no Windows, utilize a IDE Code::Blocks, os "Build targets" padrões (Debug e Release) estão confogirados para Code::Blocks versão 20.03 ou superior, que utiliza MinGW 64-bits. Se você estiver utilizando versões mais antigas do Code::Blocks (17.12 ou anteriores) você precisa alterar o "Build target" para "Debug (CBlocks 17.12 32-bit)" ou "Release (CBlocks 17.12 32-bit)" antes de compilar o projeto.
