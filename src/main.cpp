@@ -247,6 +247,7 @@ GLuint g_NumLoadedTextures = 0;
 
 
 glm::vec4 BezierCurve(glm::vec4 bezierP0,glm::vec4 bezierP1,glm::vec4 bezierP2,glm::vec4 bezierP3, float t);
+bool collisionApple(float cpX, float cpY, float cpZ, glm::vec3 apple);
 
 int main(int argc, char* argv[])
 {
@@ -624,6 +625,9 @@ int main(int argc, char* argv[])
         glUniform1i(g_object_id_uniform, CALF);
         DrawVirtualObject("Calf");
 
+        glm::vec3 apple1Position(14.0f,0.0f,18.0f);
+        if(collisionApple(cowX, cowY, cowZ, apple1Position))
+            printf("COMEU MACA");
 
 
 
@@ -1811,6 +1815,15 @@ glm::vec4 BezierCurve(glm::vec4 bezierP0,glm::vec4 bezierP1,glm::vec4 bezierP2,g
                      1.0f);
 
 }
+
+bool collisionApple(float cpX, float cpY, float cpZ, glm::vec3 apple)
+{
+    if (cpX == apple.x && cpZ == apple.z)
+        return 1;
+    else
+        return 0;
+}
+
 
 // set makeprg=cd\ ..\ &&\ make\ run\ >/dev/null
 // vim: set spell spelllang=pt_br :
